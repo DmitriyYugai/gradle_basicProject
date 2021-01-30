@@ -4,6 +4,14 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/6.8.1/samples
  */
+println("Start")
 task firstTask {
     println("This is the firstTask")
+    doFirst() {
+        println("Task firstTask doFirst")
+    }
+    doLast() {
+        println("Task firstTask doLast")
+    }
 }
+println("End")
