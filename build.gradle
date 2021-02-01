@@ -4,14 +4,33 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/6.8.1/samples
  */
-println("Start")
 task firstTask {
+    def abc = "abc"
+    println abc
     println("This is the firstTask")
-    doFirst() {
-        println("Task firstTask doFirst")
-    }
     doLast() {
-        println("Task firstTask doLast")
+        println "Default Task"
     }
 }
-println("End")
+
+task deployToStage {
+    doLast() {
+        println("Deploying to stage")
+    }
+}
+
+task deployToProd {
+    doLast() {
+        println("Deploying to prod")
+    }
+}
+
+task cleanFiles {
+    doLast() {
+        println("Cleaning files")
+    }
+}
+
+deployToProd.dependsOn deployToStage
+deployToProd.finalizedBy cleanFiles
+defaultTasks "firstTask"
